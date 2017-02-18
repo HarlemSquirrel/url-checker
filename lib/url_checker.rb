@@ -47,7 +47,7 @@ class URLChecker
   end
 
   def display_result(response, url)
-    msg = "#{response.code} #{response.message} #{url}"
+    msg =  " #{response.code} #{response.message} #{url}"
     case response
     when Net::HTTPSuccess, Net::HTTPRedirection
       puts msg.green
@@ -59,13 +59,14 @@ class URLChecker
 
   def display_summary
     num_checked = results.length - 1
-    msg = "  #{num_checked} URLs checked with #{num_issues} issues"
+    msg = "  #{num_checked} URLs checked with #{num_issues} issue(s)."
     num_issues > 0 ? puts(msg.yellow) : puts(msg.green)
   end
 
   def write_results
     time = Time.now.strftime('%Y-%m-%d-%H:%M:%S')
     results_file_path = file_path.gsub('.csv', "_results_#{time}.csv")
+    puts "  Results saved to #{results_file_path}"
     CSV.open(results_file_path, "wb") do |csv|
       results.each { |r| csv << r }
     end
