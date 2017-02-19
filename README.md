@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/HarlemSquirrel/url-checker/badges/gpa.svg)](https://codeclimate.com/github/HarlemSquirrel/url-checker)
+
 # URL Checker
 
 A Ruby CLI for checking a list of URLs in a CSV file
