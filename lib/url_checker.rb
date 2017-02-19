@@ -1,7 +1,10 @@
+# frozen_string_literal: true
 require_relative '../config/environment'
 
-class URLChecker
-  attr_reader :file_path
+class UrlChecker
+  BAD_CALL_MSG = 'Please call with one CSV file with URLs in the first column'
+
+  attr_reader :file_path, :results_file_path
 
   def initialize(file_path:)
     @file_path = file_path
@@ -17,10 +20,11 @@ class URLChecker
 
   def self.call
     if ARGV.length == 1 && ARGV.first.match?(/\.csv\z/)
-      new(file_path: ARGV.first).call
+      url_checker = new(file_path: ARGV.first).call
     else
-      puts 'Please call with one CSV file with URLs in the first column'.red
+      puts BAD_CALL_MSG.red
     end
+    url_checker
   end
 
   private
@@ -65,10 +69,11 @@ class URLChecker
 
   def write_results
     time = Time.now.strftime('%Y-%m-%d-%H:%M:%S')
-    results_file_path = file_path.gsub('.csv', "_results_#{time}.csv")
+    @results_file_path = file_path.gsub('.csv', "_results_#{time}.csv")
     puts "  Results saved to #{results_file_path}"
     CSV.open(results_file_path, "wb") do |csv|
       results.each { |r| csv << r }
     end
+    results_file_path
   end
 end
