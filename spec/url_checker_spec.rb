@@ -20,7 +20,7 @@ RSpec.describe UrlChecker do
     end
 
     context 'with no runtime arguments' do
-    before { allow(ARGV).to receive(:length) { 0 } }
+      before { allow(ARGV).to receive(:length) { 0 } }
 
       it { expect { described_class.call }.to output(bad_call_msg).to_stdout }
     end
@@ -69,7 +69,7 @@ RSpec.describe UrlChecker do
 
     context 'CSV output' do
       let(:expected_results_csv) { CSV.read('spec/fixtures/expected_test_results.csv') }
-      let(:results_headers) { ['Response', 'URL'] }
+      let(:results_headers) { described_class::RESULTS_HEADERS }
       let(:results_file_path) { url_checker.results_file_path }
       let(:results_csv) { CSV.read results_file_path }
 

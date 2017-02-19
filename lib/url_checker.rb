@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 require_relative '../config/environment'
 
+# The main class
 class UrlChecker
   BAD_CALL_MSG = 'Please call with one CSV file with URLs in the first column'
+  RESULTS_HEADERS = %w(Response URL).freeze
 
   attr_reader :file_path, :results_file_path
 
@@ -11,7 +13,7 @@ class UrlChecker
   end
 
   def call
-    @results = [['Response', 'URL']]
+    @results = [RESULTS_HEADERS]
     @num_issues = 0
     check_urls_from_csv
     display_summary
@@ -42,7 +44,7 @@ class UrlChecker
     threads = []
     CSV.foreach(file_path) do |row|
       url = row[0]
-      threads << Thread.new { check_url url } if url.match? /http/
+      threads << Thread.new { check_url url } if url.match?(/http/)
     end
     threads.each(&:join)
   end
@@ -53,7 +55,7 @@ class UrlChecker
   end
 
   def display_result(response, url)
-    msg =  " #{response.code} #{response.message} #{url}"
+    msg = " #{response.code} #{response.message} #{url}"
     case response
     when Net::HTTPSuccess, Net::HTTPRedirection
       puts msg.green
@@ -66,14 +68,14 @@ class UrlChecker
   def display_summary
     num_checked = results.length - 1
     msg = "  #{num_checked} URLs checked with #{num_issues} issue(s)."
-    num_issues > 0 ? puts(msg.yellow) : puts(msg.green)
+    num_issues.positive? ? puts(msg.yellow) : puts(msg.green)
   end
 
   def write_results
     time = Time.now.strftime('%Y-%m-%d-%H:%M:%S')
     @results_file_path = file_path.gsub('.csv', "_results_#{time}.csv")
     puts "  Results saved to #{results_file_path}"
-    CSV.open(results_file_path, "wb") do |csv|
+    CSV.open(results_file_path, 'wb') do |csv|
       results.each { |r| csv << r }
     end
     results_file_path
