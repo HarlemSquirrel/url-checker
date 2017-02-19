@@ -6,10 +6,10 @@ A Ruby CLI for checking a list of URLs in a CSV file
 
 ```sh
 $ bundle install
-$ ruby bin/checkurls test.csv
- 200 OK https://www.google.com
- 301 Moved Permanently http://google.com
- 404 Not Found http://google.com/cheese
-  3 URLs checked with 1 issue(s).
-  Results saved to test_results_2017-02-18-13:52:39.csv
+$ bin/checkurls test.csv
+404 Not Found http://google.com/cheese
+301 Moved Permanently http://google.com
+200 OK https://www.google.com
+ 3 URLs checked with 1 issue(s).
+ Results saved to spec/fixtures/test_results_2017-02-19-11:44:27.csv
 ```

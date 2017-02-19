@@ -39,10 +39,12 @@ class UrlChecker
   end
 
   def check_urls_from_csv
+    threads = []
     CSV.foreach(file_path) do |row|
       url = row[0]
-      check_url url if url.match? /http/
+      threads << Thread.new { check_url url } if url.match? /http/
     end
+    threads.each(&:join)
   end
 
   def collect_result(response, url)

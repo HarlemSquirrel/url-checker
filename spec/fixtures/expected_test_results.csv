@@ -1,4 +1,4 @@
 Response,URL
-200 OK,https://www.google.com
-301 Moved Permanently,http://google.com
 404 Not Found,http://google.com/cheese
+301 Moved Permanently,http://google.com
+200 OK,https://www.google.com
