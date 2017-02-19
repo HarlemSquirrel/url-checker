@@ -1,1 +1,3 @@
 *.csv
+!spec/fixtures/expected_test_results.csv
+!spec/fixtures/test.csv
