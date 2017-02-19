@@ -1,3 +1,9 @@
+PATH
+  remote: .
+  specs:
+    url-checker (1.0)
+      colorize (~> 0.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -21,8 +27,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  colorize
   rspec (~> 3.5.0)
+  url-checker!
 
 RUBY VERSION
    ruby 2.4.0p0

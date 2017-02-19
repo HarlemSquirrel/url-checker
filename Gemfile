@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 
 ruby '>= 2.4.0'
 
-gem 'colorize'
+gemspec
 
 group :test do
   gem 'rspec', '~> 3.5.0'
