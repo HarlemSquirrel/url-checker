@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require_relative '../config/environment'
+require 'benchmark'
 
 # The main class
 class UrlChecker
@@ -15,8 +16,7 @@ class UrlChecker
   def call
     @results = [RESULTS_HEADERS]
     @num_issues = 0
-    check_urls_from_csv
-    display_summary
+    display_summary Benchmark.measure { check_urls_from_csv }.real
     write_results
   end
 
@@ -65,9 +65,9 @@ class UrlChecker
     end
   end
 
-  def display_summary
+  def display_summary(run_time)
     num_checked = results.length - 1
-    msg = "  #{num_checked} URLs checked with #{num_issues} issue(s)."
+    msg = "  #{num_checked} URLs checked with #{num_issues} issue(s) in #{run_time.round 2} s."
     num_issues.positive? ? puts(msg.yellow) : puts(msg.green)
   end
 
