@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-RSpec.describe UrlChecker do
+RSpec.describe UrlChecker::UrlChecker do
   let(:file_path) { 'spec/fixtures/test.csv' }
   let(:url_checker) { described_class.new file_path: file_path }
 
