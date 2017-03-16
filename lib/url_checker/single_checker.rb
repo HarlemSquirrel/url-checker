@@ -25,6 +25,8 @@ module UrlChecker
       rescued_response('Connection refused', e.message)
     rescue Errno::EINVAL => e
       rescued_response('Invalid argument', e.message)
+    rescue => e
+      rescued_response(e.class.to_s, e.message)
     end
 
     def invalid_uri_response
