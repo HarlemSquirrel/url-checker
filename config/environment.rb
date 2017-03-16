@@ -6,5 +6,7 @@ require 'csv'
 require 'net/http'
 
 require_relative '../lib/url_checker'
-require_relative '../lib/url_checker/url_checker'
+require_relative '../lib/url_checker/cli'
+require_relative '../lib/url_checker/rescued_response'
+require_relative '../lib/url_checker/single_checker'
 require_relative '../lib/url_checker/version'

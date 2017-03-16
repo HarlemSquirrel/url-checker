@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-RSpec.describe UrlChecker::UrlChecker do
+RSpec.describe UrlChecker::Cli do
   let(:file_path) { 'spec/fixtures/test.csv' }
   let(:url_checker) { described_class.new file_path: file_path }
 
@@ -83,7 +83,7 @@ RSpec.describe UrlChecker::UrlChecker do
       end
 
       it 'save the results CSV file' do
-        expect(results_csv).to eq expected_results_csv
+        expect(results_csv.sort).to eq expected_results_csv.sort
       end
     end
   end

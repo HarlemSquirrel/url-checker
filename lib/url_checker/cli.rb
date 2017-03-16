@@ -2,7 +2,7 @@
 
 module UrlChecker
   # The main class
-  class UrlChecker
+  class Cli
     BAD_CALL_MSG = 'Please call with one CSV file with URLs in the first column'
     RESULTS_HEADERS = %w(Response URL).freeze
 
@@ -33,28 +33,27 @@ module UrlChecker
     attr_accessor :num_issues, :results
 
     def check_url(url)
-      uri = URI(url)
-      response = Net::HTTP.get_response uri
-      collect_result response, url
-      display_result response, url
+      response = UrlChecker::SingleChecker.new(url: url).call
+      collect_result response
+      display_result response
     end
 
     def check_urls_from_csv
       threads = []
       CSV.foreach(file_path) do |row|
         url = row[0]
-        threads << Thread.new { check_url url } if url.match?(/http/)
+        threads << Thread.new { check_url url } if url.match?(/\Ahttp/)
       end
       threads.each(&:join)
     end
 
-    def collect_result(response, url)
-      line = ["#{response.code} #{response.message}", url]
+    def collect_result(response)
+      line = ["#{response.code} #{response.message}", response.uri.to_s]
       results << line
     end
 
-    def display_result(response, url)
-      msg = " #{response.code} #{response.message} #{url}"
+    def display_result(response)
+      msg = " #{response.code} #{response.message} #{response.uri.to_s}"
       case response
       when Net::HTTPSuccess, Net::HTTPRedirection
         puts msg.green
