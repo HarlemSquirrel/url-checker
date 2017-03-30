@@ -2,7 +2,12 @@
 
 # URL Checker
 
-A Ruby CLI for checking a list of URLs from a CSV file. Checkout the [RubGems page](https://rubygems.org/gems/url-checker). 
+A Ruby CLI for checking a list of URLs from a CSV file. Checkout the [RubGems page](https://rubygems.org/gems/url-checker).
+
+## Requirements
+
+- >= Ruby 2.4.0
+- Internet connection
 
 ## Getting started
 
