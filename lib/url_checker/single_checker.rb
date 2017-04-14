@@ -16,7 +16,7 @@ module UrlChecker
     private
 
     def check_url
-      @uri = URI(url_string)
+      @uri = URI(URI.escape url_string)
       return invalid_uri_response unless valid_url?
       response = Net::HTTP.get_response uri
       response.uri ||= uri # sometimes the uri is not set
