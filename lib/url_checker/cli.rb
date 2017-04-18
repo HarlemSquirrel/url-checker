@@ -38,11 +38,15 @@ module UrlChecker
       display_result response
     end
 
+    def check_url_thread(url)
+      Thread.new { check_url(url) }
+    end
+
     def check_urls_from_csv
       threads = []
       CSV.foreach(file_path) do |row|
         url = row[0]
-        threads << Thread.new { check_url url } if url.match?(/\Ahttp/)
+        threads << check_url_thread(url) if url.match?(/\Ahttp/)
       end
       threads.each(&:join)
     end
@@ -53,7 +57,7 @@ module UrlChecker
     end
 
     def display_result(response)
-      msg = " #{response.code} #{response.message} #{response.uri.to_s}\n"
+      msg = " #{response.code} #{response.message} #{response.uri}\n"
       case response
       when Net::HTTPSuccess, Net::HTTPRedirection
         print msg.green

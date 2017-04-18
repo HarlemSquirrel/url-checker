@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe UrlChecker::RecuedResponse do
   let(:subject) { described_class.new code: '123', message: 'hi', uri: uri }
   let(:uri) { Addressable::URI.parse 'http://yahoo.com' }
@@ -8,7 +10,7 @@ RSpec.describe UrlChecker::RecuedResponse do
 
   context 'with an invalid uri type' do
     it 'raises a TypeError' do
-      expect{ described_class.new code: '1', message: 'a', uri: 'bad' }.to raise_error TypeError
+      expect { described_class.new code: '1', message: 'a', uri: 'bad' }.to raise_error TypeError
     end
   end
 end

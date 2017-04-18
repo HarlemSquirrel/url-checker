@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe UrlChecker::SingleChecker do
   let(:url_checker) { described_class.new url: url }
 
@@ -8,7 +10,7 @@ RSpec.describe UrlChecker::SingleChecker do
 
   describe '#call' do
     context 'with an OK url' do
-      let(:code) { '200'}
+      let(:code) { '200' }
       let(:message) { 'OK' }
       let(:url) { 'https://www.google.com' }
 
@@ -16,7 +18,7 @@ RSpec.describe UrlChecker::SingleChecker do
     end
 
     context 'with a moved permanently url' do
-      let(:code) { '301'}
+      let(:code) { '301' }
       let(:message) { 'Moved Permanently' }
       let(:url) { 'https://google.com' }
 
@@ -24,7 +26,7 @@ RSpec.describe UrlChecker::SingleChecker do
     end
 
     context 'with a not found url' do
-      let(:code) { '404'}
+      let(:code) { '404' }
       let(:message) { 'Not Found' }
       let(:url) { 'https://google.com/asdf' }
 

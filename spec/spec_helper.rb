@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'url_checker'
 require 'webmock/rspec'
 require 'vcr'
@@ -112,19 +113,19 @@ RSpec.configure do |config|
   end
 
   # Add VCR to all tests
-    config.around(:each) do |example|
-      options = example.metadata[:vcr] || {}
-      if options[:record] == :skip
-        VCR.turned_off(&example)
-      else
-        name = example.metadata[:full_description].split(/\s+/, 2).join('/').to_sym.to_s.gsub(/\./,'/').gsub(/[^\w\/]+/, '_').gsub(/\/$/, '')
-        VCR.use_cassette(name, options, &example)
-      end
+  config.around(:each) do |example|
+    options = example.metadata[:vcr] || {}
+    if options[:record] == :skip
+      VCR.turned_off(&example)
+    else
+      name = example.metadata[:full_description].split(/\s+/, 2).join('/').to_sym.to_s.gsub(/\./, '/').gsub(/[^\w\/]+/, '_').gsub(/\/$/, '')
+      VCR.use_cassette(name, options, &example)
     end
+  end
 end
 
 VCR.configure do |config|
   # config.allow_http_connections_when_no_cassette = true
-  config.cassette_library_dir = "vcr_cassettes"
+  config.cassette_library_dir = 'vcr_cassettes'
   config.hook_into :webmock # or :fakeweb
 end

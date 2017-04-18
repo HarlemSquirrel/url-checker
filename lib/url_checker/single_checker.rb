@@ -3,9 +3,9 @@
 module UrlChecker
   # Checks a single URL and returns the result
   class SingleChecker
-    SCHEMES = %w[http https]
+    SCHEMES = %w(http https).freeze
 
-    attr_reader :url_string, :uri
+    attr_reader :url_string
 
     def initialize(url:)
       @url_string = url
@@ -18,7 +18,6 @@ module UrlChecker
     private
 
     def check_url
-      @uri = Addressable::URI.parse url_string
       return invalid_uri_response unless valid_url?
       response = Net::HTTP.get_response uri
       response.uri ||= uri # sometimes the uri is not set
@@ -45,6 +44,10 @@ module UrlChecker
 
     def valid_url?
       SCHEMES.include? uri.scheme
+    end
+
+    def uri
+      @uri ||= Addressable::URI.parse url_string
     end
   end
 end
