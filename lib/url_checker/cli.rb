@@ -3,7 +3,7 @@
 module UrlChecker
   # The main class
   class Cli
-    BAD_CALL_MSG = 'Please call with one CSV file with URLs in the first column'
+    BAD_CALL_MSG = "Please call with one CSV file with URLs in the first column\n"
     RESULTS_HEADERS = %w(Response URL).freeze
 
     attr_reader :file_path, :results_file_path
@@ -23,7 +23,7 @@ module UrlChecker
       if ARGV.length == 1 && ARGV.first.match?(/\.csv\z/)
         url_checker = new(file_path: ARGV.first).call
       else
-        puts BAD_CALL_MSG.red
+        print BAD_CALL_MSG.red
       end
       url_checker
     end
@@ -53,26 +53,26 @@ module UrlChecker
     end
 
     def display_result(response)
-      msg = " #{response.code} #{response.message} #{response.uri.to_s}"
+      msg = " #{response.code} #{response.message} #{response.uri.to_s}\n"
       case response
       when Net::HTTPSuccess, Net::HTTPRedirection
-        puts msg.green
+        print msg.green
       else
         @num_issues += 1
-        puts msg.red
+        print msg.red
       end
     end
 
     def display_summary(run_time)
       num_checked = results.length - 1
-      msg = "  #{num_checked} URLs checked with #{num_issues} issue(s) in #{run_time.round 2} s."
-      num_issues.positive? ? puts(msg.yellow) : puts(msg.green)
+      msg = "  #{num_checked} URLs checked with #{num_issues} issue(s) in #{run_time.round 2} s.\n"
+      num_issues.positive? ? print(msg.yellow) : print(msg.green)
     end
 
     def write_results
       time = Time.now.strftime('%Y-%m-%d-%H:%M:%S')
       @results_file_path = file_path.gsub('.csv', "_results_#{time}.csv")
-      puts "  Results saved to #{results_file_path}"
+      print "  Results saved to #{results_file_path}\n"
       CSV.open(results_file_path, 'wb') do |csv|
         results.each { |r| csv << r }
       end
