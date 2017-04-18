@@ -6,7 +6,7 @@ module UrlChecker
     attr_reader :code, :message, :uri
 
     def initialize(code:, message:, uri:)
-      raise TypeError, 'uri is not a URI' unless uri.is_a? URI
+      raise TypeError, 'uri is not a URI' unless uri.is_a? Addressable::URI
       @code = code
       @message = message
       @uri = uri

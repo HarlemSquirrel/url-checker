@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "addressable/uri"
 require 'benchmark'
 require 'colorize'
 require 'csv'

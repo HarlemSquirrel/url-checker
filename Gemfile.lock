@@ -1,13 +1,14 @@
 PATH
   remote: .
   specs:
-    url-checker (1.1.0)
+    url-checker (1.1.2)
+      addressable (~> 2.5.1)
       colorize (~> 0.8)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.5.0)
+    addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
     colorize (0.8.1)
     crack (0.4.3)
