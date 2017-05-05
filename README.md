@@ -6,7 +6,7 @@ A Ruby CLI for checking a list of URLs from a CSV file. Checkout the [RubGems pa
 
 ## Requirements
 
-- >= Ruby 2.4.0
+- Ruby 2.4+
 - Internet connection
 
 ## Getting started
