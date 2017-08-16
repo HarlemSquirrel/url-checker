@@ -1,4 +1,5 @@
 [![Code Climate](https://codeclimate.com/github/HarlemSquirrel/url-checker/badges/gpa.svg)](https://codeclimate.com/github/HarlemSquirrel/url-checker)
+[![Build Status](https://travis-ci.org/HarlemSquirrel/url-checker.svg?branch=master)](https://travis-ci.org/HarlemSquirrel/url-checker)
 
 # URL Checker
 
