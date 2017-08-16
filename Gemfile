@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gemspec
 
 group :development do
+  gem 'fasterer', '~> 0.3.2'
   gem 'overcommit', '~> 0.40.0'
   gem 'rubocop', '~> 0.49.1'
 end
