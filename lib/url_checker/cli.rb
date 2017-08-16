@@ -4,7 +4,7 @@ module UrlChecker
   # The main class
   class Cli
     BAD_CALL_MSG = "Please call with one CSV file with URLs in the first column\n"
-    RESULTS_HEADERS = %w(Response URL).freeze
+    RESULTS_HEADERS = %w[Response URL].freeze
 
     attr_reader :file_path, :results_file_path
 

@@ -3,8 +3,8 @@
 module UrlChecker
   # Checks a single URL and returns the result
   class SingleChecker
-    INVALID_URI_MSG = 'must begin with http and contain only valid characters'.freeze
-    SCHEMES = %w(http https).freeze
+    INVALID_URI_MSG = 'must begin with http and contain only valid characters'
+    SCHEMES = %w[http https].freeze
 
     attr_reader :url_string
 
@@ -49,7 +49,7 @@ module UrlChecker
 
     def valid_url?
       SCHEMES.include? uri.scheme
-    rescue Addressable::URI::InvalidURIError => e
+    rescue Addressable::URI::InvalidURIError
       false
     end
 

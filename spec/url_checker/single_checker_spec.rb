@@ -62,7 +62,8 @@ RSpec.describe UrlChecker::SingleChecker do
     context 'with an invalid url argument' do
       let(:code) { 'Invalid argument' }
       let(:message) do
-        'Failed to open TCP connection to 1234:80 (Invalid argument - connect(2) for "1234" port 80)'
+        'Failed to open TCP connection to 1234:80 '\
+        '(Invalid argument - connect(2) for "1234" port 80)'
       end
       let(:url) { 'http://1234' }
 
