@@ -7,8 +7,6 @@ PreCommit:
 
   FixMe:
     enabled: true
-    exclude:
-      - 'vendor/assets/javascripts/bootstrap-tagsinput.js'
 
   HardTabs:
     enabled: true
@@ -23,7 +21,7 @@ PreCommit:
   TrailingWhitespace:
     enabled: true
     exclude:
-      - '**/vendor/**/*'
+      - 'vcr_cassettes/**/*'
 
   YamlSyntax:
     enabled: false
