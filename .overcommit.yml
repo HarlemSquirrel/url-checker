@@ -1,0 +1,37 @@
+PreCommit:
+  BundleAudit:
+    enabled: false
+
+  Fasterer:
+    enabled: true
+
+  FixMe:
+    enabled: true
+    exclude:
+      - 'vendor/assets/javascripts/bootstrap-tagsinput.js'
+
+  HardTabs:
+    enabled: true
+    exclude:
+      - 'Makefile'
+      - 'vendor/**/*'
+
+  RuboCop:
+    enabled: true
+    on_warn: fail
+
+  TrailingWhitespace:
+    enabled: true
+    exclude:
+      - '**/vendor/**/*'
+
+  YamlSyntax:
+    enabled: false
+
+PrePush:
+  RSpec:
+    enabled: true
+
+PostCheckout:
+  BundleInstall:
+    enabled: true
