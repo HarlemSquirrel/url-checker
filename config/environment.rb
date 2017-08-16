@@ -5,6 +5,7 @@ require 'benchmark'
 require 'colorize'
 require 'csv'
 require 'net/http'
+require 'openssl'
 
 require_relative '../lib/url_checker'
 require_relative '../lib/url_checker/cli'
