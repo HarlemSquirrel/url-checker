@@ -43,12 +43,18 @@ RSpec.describe UrlChecker::SingleChecker do
       include_context 'response and message'
     end
 
-    context 'with an invalid URL' do
+    context 'with a URL that does not start with http' do
       let(:code) { 'Invalid URL' }
-      let(:message) do
-        'URL must begin with http'
-      end
+      let(:message) { described_class::INVALID_URI_MSG }
       let(:url) { '1234' }
+
+      include_context 'response and message'
+    end
+
+    context 'with an invalid URL that contains spaces' do
+      let(:code) { 'Invalid URL' }
+      let(:message) { described_class::INVALID_URI_MSG }
+      let(:url) { 'https://Example .com' }
 
       include_context 'response and message'
     end

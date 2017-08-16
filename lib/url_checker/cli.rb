@@ -46,7 +46,7 @@ module UrlChecker
       threads = []
       CSV.foreach(file_path) do |row|
         url = row[0]
-        threads << check_url_thread(url) if url.match?(/\Ahttp/)
+        threads << check_url_thread(url) if url.is_a?(String) && url.match?(/\Ahttp/)
       end
       threads.each(&:join)
     end
