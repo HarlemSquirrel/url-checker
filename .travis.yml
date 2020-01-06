@@ -7,4 +7,5 @@ rvm:
   - 2.7
 before_install:
   - gem install bundler -v 2.1.4
+bundler_args: --without development
 script: bundle exec rspec
