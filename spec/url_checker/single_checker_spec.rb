@@ -60,9 +60,10 @@ RSpec.describe UrlChecker::SingleChecker do
     end
 
     context 'with an invalid url argument' do
-      let(:code) { 'Connection Timeout' }
+      let(:code) { 'Invalid argument' }
       let(:message) do
-        'execution expired'
+        'Failed to open TCP connection to 1234:80 ' \
+        '(Invalid argument - connect(2) for "1234" port 80)'
       end
       let(:url) { 'http://1234' }
 
