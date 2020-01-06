@@ -12,7 +12,7 @@ RSpec.describe UrlChecker::SingleChecker do
     context 'with an OK url' do
       let(:code) { '200' }
       let(:message) { 'OK' }
-      let(:url) { 'https://www.google.com' }
+      let(:url) { 'https://www.archlinux.org' }
 
       include_context 'response and message'
     end
@@ -20,7 +20,7 @@ RSpec.describe UrlChecker::SingleChecker do
     context 'with a moved permanently url' do
       let(:code) { '301' }
       let(:message) { 'Moved Permanently' }
-      let(:url) { 'https://google.com' }
+      let(:url) { 'https://archlinux.org' }
 
       include_context 'response and message'
     end
@@ -60,17 +60,16 @@ RSpec.describe UrlChecker::SingleChecker do
     end
 
     context 'with an invalid url argument' do
-      let(:code) { 'Invalid argument' }
+      let(:code) { 'Connection Timeout' }
       let(:message) do
-        'Failed to open TCP connection to 1234:80 '\
-        '(Invalid argument - connect(2) for "1234" port 80)'
+        'execution expired'
       end
       let(:url) { 'http://1234' }
 
       include_context 'response and message'
     end
 
-    context 'with a socket error from the url' do
+    xcontext 'with a socket error from the url' do
       let(:code) { 'SocketError' }
       let(:message) do
         'Failed to open TCP connection to 123.td:80 (getaddrinfo: Name or service not known)'

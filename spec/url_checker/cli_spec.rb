@@ -47,8 +47,8 @@ RSpec.describe UrlChecker::Cli do
 
   describe '#call' do
     context 'stdout' do
-      let(:url_matcher_200) { %r{200 OK https://www.google.com} }
-      let(:url_matcher_301) { %r{301 Moved Permanently http://google.com} }
+      let(:url_matcher_200) { %r{200 OK https://www.archlinux.org/} }
+      let(:url_matcher_301) { %r{301 Moved Permanently http://archlinux.org} }
       let(:url_matcher_404) { %r{404 Not Found http://google.com/cheese} }
 
       before do
