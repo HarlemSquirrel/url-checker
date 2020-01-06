@@ -20,7 +20,7 @@ module UrlChecker
     end
 
     def self.call
-      if ARGV.length == 1 && ARGV.first.ends_with?('.csv')
+      if ARGV.length == 1 && ARGV.first.end_with?('.csv')
         url_checker = new(file_path: ARGV.first).call
       else
         print BAD_CALL_MSG.red
@@ -46,7 +46,7 @@ module UrlChecker
       threads = []
       CSV.foreach(file_path) do |row|
         url = row[0]
-        threads << check_url_thread(url) if url.is_a?(String) && url.starts_with?('http')
+        threads << check_url_thread(url) if url.is_a?(String) && url.start_with?('http')
       end
       threads.each(&:join)
     end
