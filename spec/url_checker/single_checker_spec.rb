@@ -70,7 +70,7 @@ RSpec.describe UrlChecker::SingleChecker do
       include_context 'response and message'
     end
 
-    xcontext 'with a socket error from the url' do
+    context 'with a socket error from the url' do
       let(:code) { 'SocketError' }
       let(:message) do
         'Failed to open TCP connection to 123.td:80 (getaddrinfo: Name or service not known)'
