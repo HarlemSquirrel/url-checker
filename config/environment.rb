@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 
-require 'addressable/uri'
 require 'benchmark'
-require 'colorize'
 require 'csv'
 require 'net/http'
+require 'rubygems'
+
+require 'bundler/setup'
+
+require 'addressable/uri'
+require 'colorize'
 require 'openssl'
 
 require_relative '../lib/url_checker'
